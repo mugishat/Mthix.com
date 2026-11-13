@@ -1,0 +1,4 @@
+<div class="page-head"><h1>Notifications</h1><form method="post" action="/notifications/read"><?= csrf_field() ?><button class="btn btn-light btn-sm" type="submit">Mark all as read</button></form></div>
+<div class="card"><?php if (!$items): ?><div class="empty">You are all caught up.</div><?php endif; ?>
+<?php foreach ($items as $n): ?><div class="row" style="padding:10px 0;border-bottom:1px solid #f0f2f6"><span class="dot" style="background:<?= $n['read_at'] ? '#cbd5e1' : 'var(--green)' ?>"></span>
+  <div class="grow"><?= $n['link'] ? '<a href="' . e($n['link']) . '"><b>' . e($n['title']) . '</b></a>' : '<b>' . e($n['title']) . '</b>' ?><div class="small muted"><?= e((string)$n['body']) ?></div></div><span class="small muted nowrap"><?= dt($n['created_at'], 'M j, H:i') ?></span></div><?php endforeach; ?></div>
